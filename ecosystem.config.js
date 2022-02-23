@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'NodeJS Webhook',
-			script: './webhook.js',
+			script: './Watcher/webhook.js',
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -10,7 +10,7 @@ module.exports = {
 		},
 		{
 			name: 'NodeJS Server',
-			script: '../Server/app.js',
+			script: './Server/app.js',
 			watch: false,
 			env: {
 				NODE_ENV: 'development'

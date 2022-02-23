@@ -5,9 +5,9 @@ services:
       context: .
       dockerfile: dockerfile
       args:
-        PORT_NUMBER: 8082
-        INSPECT_PORT: 8083
-        GIT_WEBHOOK_PORT: 8084
+        SERVER_PORT: 8090
+        INSPECT_PORT: 8091
+        GIT_WEBHOOK_PORT: 8092
         GIT_WEBHOOK: "/git-webhook"
         GITHUB_LINK: https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git
         GITHUB_BRANCH: main
@@ -15,8 +15,9 @@ services:
         START_SCRIPT: ecosystem.config.js
         NODE_VERSION: current-alpine
     ports:
-      - "8082:8082"
-      - "8083:8083"
+      - "8090:8090"
+      - "8091:8091"
+      - "8092:8092"
     environment:
       # ENVIRONMET_VARIABLE_NAME= "environment variable value" 
       NODE_ENV: production
