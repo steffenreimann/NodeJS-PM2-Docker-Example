@@ -8,15 +8,15 @@ const { exit } = require('process');
 
 process.env.GIT_WEBHOOK = '/';
 
-const exePath = process.cwd();
-const serverExePath = path.join(exePath, '../', 'Server');
+const exePath = path.resolve(path.join(process.cwd(), 'Watcher'));
+const serverExePath = path.resolve(path.join(process.cwd(), 'Server'));
 
 console.log('Git Webhook started', process.env.GIT_WEBHOOK);
-console.log('exePath = ', process.cwd());
+console.log('exePath = ', exePath);
 console.log('serverExePath = ', serverExePath);
 
 app.get(process.env.GIT_WEBHOOK, (req, res) => {
-	gitpull();
+	//gitpull();
 	res.status(200).end();
 	res.send('Hello World!');
 });
@@ -41,7 +41,7 @@ pm2.connect(function(err) {
 		});
 
 		//console.log(pm2.list());
-		gitpull();
+		//gitpull();
 	}
 });
 
@@ -53,18 +53,18 @@ const GITHUB_BRANCH = 'main';
 async function gitpull() {
 	console.log('git pull');
 
-	//var pullRes = await SimpleGitServer.pull(GITHUB_LINK, GITHUB_BRANCH);
+	var pullRes = await SimpleGitServer.pull(GITHUB_LINK, GITHUB_BRANCH);
 
-	//console.log('git pull done! pullRes = ', pullRes);
+	console.log('git pull done! pullRes = ', pullRes);
 
-	/* if (pullRes.summary.changes > 0) {
-		console.log('git pull done! restart server');
+	if (pullRes.summary.changes > 0) {
+		console.log('restart server');
 		pm2.restart('./ecosystem.config.js', (err, proc) => {
 			console.log('pm2.restart err = ', err);
 			console.log('pm2.restart proc = ', proc);
 			////console.log(proc)
 		});
-	} */
+	}
 
 	//console.log(process.env.GITHUB_LINK);
 
