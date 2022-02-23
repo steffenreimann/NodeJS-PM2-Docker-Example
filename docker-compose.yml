@@ -9,7 +9,7 @@ services:
         INSPECT_PORT: 8091
         GIT_WEBHOOK_PORT: 8092
         GIT_WEBHOOK: "/git-webhook"
-        GITHUB_LINK: https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git
+        GITHUB_LINK: https://github.com/steffenreimann/NodeJS-Server-Example.git
         GITHUB_BRANCH: main
         NODE_VERSION: current-alpine
     ports:

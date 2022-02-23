@@ -45,7 +45,7 @@ pm2.connect(function(err) {
 	}
 });
 
-const SimpleGitServer = simpleGit(serverExePath);
+//const SimpleGitServer = simpleGit(serverExePath);
 //const GITHUB_LINK = process.env.GITHUB_LINK;
 const GITHUB_LINK = 'https://github.com/steffenreimann/NodeJS-Server-Example.git';
 const GITHUB_BRANCH = 'main';
@@ -53,18 +53,18 @@ const GITHUB_BRANCH = 'main';
 async function gitpull() {
 	console.log('git pull');
 
-	var pullRes = await SimpleGitServer.pull(GITHUB_LINK, GITHUB_BRANCH);
+	//var pullRes = await SimpleGitServer.pull(GITHUB_LINK, GITHUB_BRANCH);
 
-	console.log('git pull done! pullRes = ', pullRes);
+	//console.log('git pull done! pullRes = ', pullRes);
 
-	if (pullRes.summary.changes > 0) {
+	/* if (pullRes.summary.changes > 0) {
 		console.log('git pull done! restart server');
 		pm2.restart('./ecosystem.config.js', (err, proc) => {
 			console.log('pm2.restart err = ', err);
 			console.log('pm2.restart proc = ', proc);
 			////console.log(proc)
 		});
-	}
+	} */
 
 	//console.log(process.env.GITHUB_LINK);
 
