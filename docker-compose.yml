@@ -11,8 +11,6 @@ services:
         GIT_WEBHOOK: "/git-webhook"
         GITHUB_LINK: https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git
         GITHUB_BRANCH: main
-        START_CMD: pm2-runtime
-        START_SCRIPT: ecosystem.config.js
         NODE_VERSION: current-alpine
     ports:
       - "8090:8090"
