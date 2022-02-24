@@ -6,14 +6,17 @@ services:
       dockerfile: dockerfile
       args:
         SERVER_PORT: 8090
-        INSPECT_PORT: 8091
-        GIT_WEBHOOK_PORT: 8092
+        SERVER_INSPECT_PORT: 8091
+        WATCHER_INSPECT_PORT: 8092
+        WATCHER_PORT: 8093
         GIT_WEBHOOK: "/git-webhook"
         GITHUB_LINK: https://github.com/steffenreimann/NodeJS-Server-Example.git
         GITHUB_BRANCH: main
         NODE_VERSION: current-alpine
         WATCHER_UPDATE_ONSTART: "true"
         SERVER_UPDATE_ONSTART: "true"
+        WATCHER_INSPECT: "true"
+        SERVER_INSPECT: "true"
     ports:
       - "8090:8090"
       - "8091:8091"
