@@ -12,8 +12,8 @@ services:
         GITHUB_LINK: https://github.com/steffenreimann/NodeJS-Server-Example.git
         GITHUB_BRANCH: main
         NODE_VERSION: current-alpine
-        WATCHER_UPDATE_ONSTART: true
-        SERVER_UPDATE_ONSTART: true
+        WATCHER_UPDATE_ONSTART: "true"
+        SERVER_UPDATE_ONSTART: "true"
     ports:
       - "8090:8090"
       - "8091:8091"

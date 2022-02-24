@@ -23,7 +23,7 @@ app.get(process.env.GIT_WEBHOOK, (req, res) => {
 
 app.listen(port, () => {
 	console.log(`Watcher Running ... the webhook address for Github is ... `);
-	console.log(`http://h2899502.stratoserver.net:${port}/${process.env.GIT_WEBHOOK}`);
+	console.log(`http://h2899502.stratoserver.net:${port}${process.env.GIT_WEBHOOK}`);
 });
 
 pm2.connect(function(err) {
@@ -46,14 +46,16 @@ pm2.connect(function(err) {
 });
 
 async function gitpull(options) {
-	console.log('git pull');
+	console.log('git pull', options);
 	var pullRes = await options.git.pull(options.remote, options.branch);
 	return pullRes.summary.changes > 0 ? true : false;
 }
 
 async function init() {
+	console.log('init', typeof process.env.WATCHER_UPDATE_ONSTART);
+
 	if (process.env.WATCHER_UPDATE_ONSTART) {
-		const options = {
+		var options = {
 			git: SimpleGitWatcher,
 			branch: 'main',
 			remote: 'https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git'
@@ -61,7 +63,7 @@ async function init() {
 		var WatcherChanges = await gitpull(options);
 	}
 	if (process.env.SERVER_UPDATE_ONSTART) {
-		const options = {
+		var options = {
 			git: SimpleGitServer,
 			branch: process.env.GITHUB_BRANCH,
 			remote: process.env.GITHUB_LINK
