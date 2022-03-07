@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'NodeJS Webhook',
-			script: `./webhook.js ${DoInspect('WATCHER')}`,
+			script: `./Watcher/webhook.js ${DoInspect('WATCHER')}`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -10,7 +10,7 @@ module.exports = {
 		},
 		{
 			name: 'NodeJS Server',
-			script: `../Server/app.js ${DoInspect('SERVER')}`,
+			script: `./Server/app.js ${DoInspect('SERVER')}`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -22,7 +22,7 @@ module.exports = {
 function DoInspect(type) {
 	//console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
 	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
-	console.log(__dirname);
+	//console.log(__dirname);
 
 	let out = '';
 	if (type == 'SERVER') {
