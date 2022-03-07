@@ -20,8 +20,10 @@ module.exports = {
 };
 
 function DoInspect(type) {
-	console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
-	console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
+	//console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
+	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
+	console.log(__dirname);
+
 	let out = '';
 	if (type == 'SERVER') {
 		out = `--inspect=0.0.0.0 --inspect-port=${process.env.SERVER_INSPECT_PORT}`;
