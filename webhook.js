@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.GIT_WEBHOOK_PORT;
+const port = process.env.GIT_WEBHOOK_PORT || 3001;
 var pm2 = require('pm2');
 const simpleGit = require('simple-git');
 var path = require('path');

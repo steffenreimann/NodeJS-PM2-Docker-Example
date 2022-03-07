@@ -30,7 +30,7 @@ WORKDIR /app
 
 #RUN npm install -g npm
 
-RUN sudo npm install pm2 -g
+RUN npm install pm2 -g
 
 #Clone Watcher Repo
 RUN git clone -b main https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git /app/Watcher
@@ -67,4 +67,5 @@ ENV SERVER_INSPECT $SERVER_INSPECT
 
 WORKDIR /app/
 
-CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
+#CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
+CMD ["node", "./Watcher/webhook.js"]
