@@ -3,7 +3,7 @@
 
 ARG NODE_VERSION 
 FROM node:$NODE_VERSION
-USER root
+
 
 RUN apk --no-cache add git
 
@@ -67,5 +67,5 @@ ENV SERVER_INSPECT $SERVER_INSPECT
 
 WORKDIR /app/
 
-#CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
-CMD ["node", "./Watcher/webhook.js"]
+CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
+#CMD ["node", "./Watcher/webhook.js"]

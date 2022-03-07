@@ -3,7 +3,6 @@ volumes:
   NPM2DE:
 services:
   web:
-    user: 0:0
     build: 
       context: .
       dockerfile: dockerfile
