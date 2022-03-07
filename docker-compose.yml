@@ -26,5 +26,3 @@ services:
     environment:
       # ENVIRONMET_VARIABLE_NAME= "environment variable value" 
       NODE_ENV: production
-    volumes:
-      - NPM2DE:/app:rw
