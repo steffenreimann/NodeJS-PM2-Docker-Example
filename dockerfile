@@ -3,8 +3,8 @@
 
 ARG NODE_VERSION 
 FROM node:$NODE_VERSION
+USER root
 
-#USER root
 RUN apk --no-cache add git
 
 ARG GITHUB_USER 
