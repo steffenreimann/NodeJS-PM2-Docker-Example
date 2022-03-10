@@ -8,9 +8,9 @@ services:
       dockerfile: dockerfile
       args:
         SERVER_PORT: 8090
-        SERVER_INSPECT_PORT: 8091
-        WATCHER_INSPECT_PORT: 8092
         WATCHER_PORT: 8093
+        SERVER_INSPECT_PORT: 8070
+        WATCHER_INSPECT_PORT: 8071
         GIT_WEBHOOK: "/git-webhook"
         GITHUB_LINK: https://github.com/steffenreimann/NodeJS-Server-Example.git
         GITHUB_BRANCH: main
@@ -22,6 +22,7 @@ services:
     ports:
       - "8090:8090"
       - "8091:8091"
-      - "8092:8092"
+      - "8070:8070"
+      - "8071:8071"
     volumes:
       - NPM2DE:/app

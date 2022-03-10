@@ -1,13 +1,12 @@
-#!/usr/bin/env bas
+#!/usr/bin/env bash
 #!/bin/bash
 
 ARG NODE_VERSION 
 FROM node:$NODE_VERSION
 
-
+# Install git Package
 RUN apk --no-cache add git
 
-ARG GITHUB_USER 
 ARG SERVER_PORT 
 
 ARG SERVER_INSPECT_PORT 
@@ -15,40 +14,40 @@ ARG WATCHER_INSPECT_PORT
 ARG WATCHER_INSPECT 
 ARG SERVER_INSPECT 
 
-
 ARG GITHUB_LINK 
 ARG GITHUB_BRANCH 
 ARG GIT_WEBHOOK 
-ARG GIT_WEBHOOK_PORT 
+ARG WATCHER_PORT 
 ARG WATCHER_UPDATE_ONSTART 
 ARG SERVER_UPDATE_ONSTART 
 
 
-RUN echo $GITHUB_BRANCH $GITHUB_LINK $INSPECT_PORT $NODE_VERSION
-
 WORKDIR /app
 
-#RUN npm install -g npm
-
+# Install 'Process Manager 2.0' global with npm
 RUN npm install pm2 -g
 
-#Clone Watcher Repo
+#Clone Watcher Repo and Install Dependencies
 RUN git clone -b main https://github.com/steffenreimann/NodeJS-PM2-Docker-Example.git /app/Watcher
-WORKDIR /app/Watcher/
+WORKDIR /app/Watcher
 RUN npm install
 
-RUN echo $GITHUB_BRANCH $GITHUB_LINK
-
-#Clone Server Repo
+#Clone Server Repo and Install Dependencies
 RUN git clone -b $GITHUB_BRANCH $GITHUB_LINK /app/Server
-WORKDIR /app/Server/
+WORKDIR /app/Server
 RUN npm install
+WORKDIR /app
 
+
+# Expose Ports
+EXPOSE $WATCHER_PORT
 EXPOSE $SERVER_PORT
 EXPOSE $SERVER_INSPECT_PORT
 EXPOSE $WATCHER_INSPECT_PORT
-EXPOSE $GIT_WEBHOOK_PORT
 
+
+
+# Set Arguments to ENV Variables
 ENV GITHUB_LINK $GITHUB_LINK
 ENV GITHUB_BRANCH $GITHUB_BRANCH
 ENV GIT_WEBHOOK $GIT_WEBHOOK
@@ -56,7 +55,7 @@ ENV GIT_WEBHOOK $GIT_WEBHOOK
 ENV SERVER_PORT $SERVER_PORT
 ENV SERVER_INSPECT_PORT $SERVER_INSPECT_PORT
 ENV WATCHER_INSPECT_PORT $WATCHER_INSPECT_PORT
-ENV GIT_WEBHOOK_PORT $GIT_WEBHOOK_PORT
+ENV WATCHER_PORT $WATCHER_PORT
 
 ENV WATCHER_UPDATE_ONSTART $WATCHER_UPDATE_ONSTART
 ENV SERVER_UPDATE_ONSTART $SERVER_UPDATE_ONSTART
@@ -65,7 +64,6 @@ ENV WATCHER_INSPECT $WATCHER_INSPECT
 ENV SERVER_INSPECT $SERVER_INSPECT
 
 
-WORKDIR /app/
-USER root
+
+
 CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
-#CMD ["node", "./Watcher/webhook.js"]

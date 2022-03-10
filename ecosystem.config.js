@@ -10,7 +10,7 @@ module.exports = {
 		},
 		{
 			name: 'NodeJS Server',
-			script: `./Server/app.js --inspect-brk=0.0.0.0 --inspect-port=8071`,
+			script: `./Server/app.js ${DoInspect('SERVER')}`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -20,6 +20,7 @@ module.exports = {
 };
 
 function DoInspect(type) {
+	console.log('DoInspect process.env', process.env);
 	//console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
 	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
 	let out = '';
