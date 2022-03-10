@@ -23,7 +23,7 @@ function DoInspect(type) {
 	console.log('DoInspect process.env', process.env);
 	//console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
 	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
-	let out = '';
+	var out = '';
 	if (type == 'SERVER') {
 		let ServerPort = process.env.SERVER_PORT || '3000';
 		console.log('process.env.SERVER_PORT = ', process.env.SERVER_PORT);
