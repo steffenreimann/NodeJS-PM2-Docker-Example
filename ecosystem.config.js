@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'NodeJS Webhook',
-			script: `./Watcher/webhook.js --inspect=0.0.0.0 --inspect-port=8070`,
+			script: `./Watcher/webhook.js --inspect-brk=0.0.0.0 --inspect-port=8070`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -10,7 +10,7 @@ module.exports = {
 		},
 		{
 			name: 'NodeJS Server',
-			script: `./Server/app.js --inspect=0.0.0.0 --inspect-port=8071`,
+			script: `./Server/app.js --inspect-brk=0.0.0.0 --inspect-port=8071`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
