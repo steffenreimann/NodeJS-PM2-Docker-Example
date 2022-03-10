@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'NodeJS Webhook',
-			script: `./Watcher/webhook.js --inspect-brk=0.0.0.0 --inspect-port=8070`,
+			script: `./Watcher/webhook.js ${DoInspect('WATCHER')}`,
 			watch: false,
 			env: {
 				NODE_ENV: 'development'
@@ -24,16 +24,14 @@ function DoInspect(type) {
 	//console.log('DoInspect WATCHER_INSPECT', process.env.WATCHER_INSPECT);
 	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
 	var out = '';
-	if (type == 'SERVER') {
-		let ServerPort = process.env.SERVER_PORT || '3000';
-		console.log('process.env.SERVER_PORT = ', process.env.SERVER_PORT);
-		console.log('DoInspect ServerPort = ', ServerPort);
+	if (type == 'SERVER' && process.env.SERVER_INSPECT && typeof process.env.SERVER_INSPECT_PORT != 'undefined') {
+		console.log('process.env.SERVER_PORT = ', process.env.SERVER_INSPECT_PORT);
+		console.log('DoInspect ServerPort = ', SERVER_INSPECT_PORT);
 		out = `--inspect=0.0.0.0 --inspect-port=${ServerPort}`;
-	} else if (type == 'WATCHER') {
-		let WatcherPort = process.env.WATCHER_PORT || '3001';
-		console.log('process.env.WATCHER_PORT = ', process.env.WATCHER_PORT);
+	} else if (type == 'WATCHER' && process.env.WATCHER_INSPECT && typeof process.env.WATCHER_INSPECT_PORT != 'undefined') {
+		console.log('process.env.WATCHER_PORT = ', process.env.WATCHER_INSPECT_PORT);
 		console.log('DoInspect WatcherPort = ', WatcherPort);
-		out = `--inspect=0.0.0.0 --inspect-port=${WatcherPort}`;
+		out = `--inspect=0.0.0.0 --inspect-port=${WATCHER_INSPECT_PORT}`;
 	}
 	console.log('DoInspect out', out);
 	return out;
