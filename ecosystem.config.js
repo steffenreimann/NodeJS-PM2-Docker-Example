@@ -25,12 +25,10 @@ function DoInspect(type) {
 	//console.log('DoInspect SERVER_INSPECT', process.env.SERVER_INSPECT);
 	var out = '';
 	if (type == 'SERVER' && process.env.SERVER_INSPECT && typeof process.env.SERVER_INSPECT_PORT != 'undefined') {
-		console.log('process.env.SERVER_PORT = ', process.env.SERVER_INSPECT_PORT);
-		console.log('DoInspect ServerPort = ', SERVER_INSPECT_PORT);
+		console.log('process.env.SERVER_INSPECT_PORT = ', process.env.SERVER_INSPECT_PORT);
 		out = `--inspect=0.0.0.0 --inspect-port=${ServerPort}`;
 	} else if (type == 'WATCHER' && process.env.WATCHER_INSPECT && typeof process.env.WATCHER_INSPECT_PORT != 'undefined') {
-		console.log('process.env.WATCHER_PORT = ', process.env.WATCHER_INSPECT_PORT);
-		console.log('DoInspect WatcherPort = ', WatcherPort);
+		console.log('process.env.WATCHER_INSPECT_PORT = ', process.env.WATCHER_INSPECT_PORT);
 		out = `--inspect=0.0.0.0 --inspect-port=${WATCHER_INSPECT_PORT}`;
 	}
 	console.log('DoInspect out', out);
