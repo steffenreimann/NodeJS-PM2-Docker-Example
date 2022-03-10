@@ -66,6 +66,6 @@ ENV SERVER_INSPECT $SERVER_INSPECT
 
 
 WORKDIR /app/
-
+USER root
 CMD ["pm2-runtime", "./Watcher/ecosystem.config.js"]
 #CMD ["node", "./Watcher/webhook.js"]
